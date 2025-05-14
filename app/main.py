@@ -7,6 +7,5 @@ from app.routes import auth, users
 from app.database import SessionLocal, get_db
 models.Base.metadata.create_all(bind=database.engine)
 app = FastAPI()
-
 app.include_router(auth.router)
 app.include_router(users.router)

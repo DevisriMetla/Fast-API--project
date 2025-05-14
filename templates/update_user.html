@@ -1,0 +1,37 @@
+<html>
+<head><title>Update User</title></head>
+<body>
+<h1>Update User</h1>
+<form id="updateUserForm">
+    <label>ID:</label><br>
+    <input type="number" id="id" required><br>
+    <label>Username:</label><br>
+    <input type="text" id="username" required><br>
+    <label>Email:</label><br>
+    <input type="email" id="email" required><br>
+    <label>Password:</label><br>
+    <input type="password" id="password" required><br>
+    <label>Phone:</label><br>
+    <input type="text" id="phone" required><br><br>
+    <button type="button" onclick="updateUser()">Update</button>
+</form>
+<script>
+    function updateUser() {
+        const id = document.getElementById('id').value;
+        const user = {
+            username: document.getElementById('username').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value,
+            phone: document.getElementById('phone').value
+        };
+        fetch(`/users/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user)
+        })
+        .then(response => response.json())
+        .then(() => location.href = 'index.html');
+    }
+</script>
+</body>
+</html>

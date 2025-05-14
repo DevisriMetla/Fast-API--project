@@ -1,0 +1,19 @@
+<html>
+<head><title>Delete User</title></head>
+<body>
+<h1>Delete User</h1>
+<form>
+    <label>ID:</label><br>
+    <input type="number" id="id" required><br><br>
+    <button type="button" onclick="deleteUser()">Delete</button>
+</form>
+<script>
+    function deleteUser() {
+        const id = document.getElementById('id').value;
+        fetch(`/users/${id}`, { method: 'DELETE' })
+            .then(response => response.json())
+            .then(() => location.href = 'index.html');
+    }
+</script>
+</body>
+</html>

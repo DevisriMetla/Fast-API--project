@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Users</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <button onclick="location.href='add_user.html'">Add User</button>
+    <button onclick="location.href='login.html'">Login</button>
+    <button onclick="location.href='register.html'">Register</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody id="userTableBody"></tbody>
+    </table>
+    <br>
+    <button onclick="location.href='update_user.html'">Update User</button>
+    <button onclick="location.href='delete_user.html'">Delete User</button>
+    <script>
+        fetch('/users/')
+            .then(response => response.json())
+            .then(data => {
+                let tableBody = document.getElementById("userTableBody");
+                tableBody.innerHTML = "";
+                data.forEach(user => {
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td>${user.id}</td>
+                            <td>${user.username}</td>
+                            <td>${user.email}</td>
+                            <td>${user.phone}</td>
+                        </tr>`;
+                });
+            });
+    </script>
+</body>
+</html>
